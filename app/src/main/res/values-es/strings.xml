@@ -3,4 +3,5 @@
     <string name="app_name">vill0990_a1</string>
     <string name="hello_message">Hola Mundo!</string>
     <string name="button_text">Soy un Botón</string>
+    <string name="description">Esta es mi primera aplicacion usando Android Studio!!</string>
 </resources>
