@@ -4,4 +4,7 @@
     <string name="hello_message">Hola Mundo!</string>
     <string name="button_text">Soy un Botón</string>
     <string name="description">Esta es mi primera aplicacion usando Android Studio!!</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="login_name">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
 </resources>
