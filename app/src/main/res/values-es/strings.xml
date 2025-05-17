@@ -7,4 +7,7 @@
     <string name="login">Iniciar Sesión</string>
     <string name="login_name">Nombre de usuario</string>
     <string name="password">Contraseña</string>
+    <string name="radio_button">Botón de opción</string>
+    <string name="check_box">Casilla de verificación</string>
+    <string name="switch_text">Que hace esto?</string>
 </resources>
