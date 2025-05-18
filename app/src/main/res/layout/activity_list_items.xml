@@ -13,20 +13,24 @@
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
         android:text="@string/radio_button"
-        />
+        tools:ignore="VisualLintButtonSize" />
+
     <CheckBox
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
         android:text="@string/check_box"
-        />
-    <Switch
+        tools:ignore="VisualLintButtonSize" />
+
+    <androidx.appcompat.widget.SwitchCompat
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:text="@string/switch_text"/>
+        android:text="@string/switch_text"
+        tools:ignore="VisualLintButtonSize" />
 
     <ImageButton
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
+        android:contentDescription="@string/hello_message"
         android:src="@android:drawable/ic_menu_camera"
-        android:contentDescription="@string/hello_message"/>
+/>
 </GridLayout>

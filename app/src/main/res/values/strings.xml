@@ -4,7 +4,7 @@
     <string name="button_text">I\'m a Button</string>
     <string name="description">This is my first application using Android Studio!</string>
     <string name="login">Login</string>
-    <string name="login_name">Login_name</string>
+    <string name="login_name">Login name</string>
     <string name="password">Password</string>
     <string name="radio_button">RadioButton</string>
     <string name="check_box">CheckBox</string>
