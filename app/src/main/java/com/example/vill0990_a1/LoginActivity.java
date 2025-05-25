@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
     SharedPreferences preferences;
     final String TAG = "LoginActivity";
-    final String EMAIL = "EMAIL";
+    final String EMAIL = "email";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
