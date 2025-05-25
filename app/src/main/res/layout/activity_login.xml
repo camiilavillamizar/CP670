@@ -18,6 +18,7 @@
     </TextView>
 
     <EditText
+        android:id="@+id/email_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
@@ -51,6 +52,7 @@
         android:text="@string/login"
         app:layout_constraintTop_toBottomOf="@id/password_input"
         android:layout_gravity="center_horizontal"
+        android:onClick="onLogin"
         />
 
 </LinearLayout>
