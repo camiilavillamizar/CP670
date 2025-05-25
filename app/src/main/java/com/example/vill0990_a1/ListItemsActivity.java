@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -58,7 +59,6 @@ public class ListItemsActivity extends AppCompatActivity {
         //To display the checkbox
         initializingCheckboxDialog();
 
-
         //setting listeners
         settingButtonListener();
         settingSwitchListener();
@@ -96,8 +96,21 @@ public class ListItemsActivity extends AppCompatActivity {
         openCamaraLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-                    if(result.getResultCode() == RESULT_OK){
+                    if(result.getResultCode() == RESULT_OK && result.getData() != null){
                         Log.i(TAG, "Camera returned to ListItemsActivity");
+
+                        Bundle extras = result.getData().getExtras();
+                        if (extras != null) {
+                            Bitmap imageBitmap = (Bitmap) extras.get("data");
+                            if(imageBitmap != null){
+                                cameraButton.setImageBitmap(imageBitmap);
+                            }
+                        } else {
+                            Toast.makeText(this, "No image captured", Toast.LENGTH_SHORT).show();
+
+                        }
+
+
                     }
                 }
         );
