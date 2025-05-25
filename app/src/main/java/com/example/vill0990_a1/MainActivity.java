@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
@@ -70,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
                 result -> {
                     if (result.getResultCode() == RESULT_OK){
                         Log.i(TAG, "Returned to MainActivity.onActivityResult");
+
+                        String messagePassed = result.getData().getStringExtra("Response");
+                        Toast toast = Toast.makeText(this, "ListItemsActivity passed: "
+                                + messagePassed, Toast.LENGTH_LONG);
+                        toast.show();
                     }
                 }
         );
