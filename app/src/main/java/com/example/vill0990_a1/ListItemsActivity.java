@@ -1,11 +1,14 @@
 package com.example.vill0990_a1;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -25,6 +28,7 @@ public class ListItemsActivity extends AppCompatActivity {
 
     ImageButton cameraButton;
     Switch switchAction;
+    CheckBox checkBox;
 
     private ActivityResultLauncher<Intent> openCamaraLauncher;
 
@@ -43,12 +47,17 @@ public class ListItemsActivity extends AppCompatActivity {
         //declaring elements
         cameraButton = findViewById(R.id.camera_button);
         switchAction = findViewById(R.id.switch_action);
+        checkBox = findViewById(R.id.checkbox);
 
         //To access to the camera for the first time we need to ask for permissions
         checkCameraPermission();
         /*An activityResultLauncher is needed because we are changing the view for the camera
         * and then we go back to the list items view with a 'result'*/
         initializingCameraLauncher();
+
+        //To display the checkbox
+        initializingCheckboxDialog();
+
 
         //setting listeners
         settingButtonListener();
@@ -117,6 +126,28 @@ public class ListItemsActivity extends AppCompatActivity {
 
             toast.show();
         });
+    }
+
+    private void initializingCheckboxDialog(){
+        checkBox.setOnCheckedChangeListener(((buttonView, isChecked) -> {
+            if(isChecked){
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                builder.setMessage(R.string.dialog_message)
+                        .setTitle(R.string.dialog_title)
+                        .setPositiveButton(R.string.ok, (dialog, id) -> {
+                            Intent resultIntent = new Intent();
+                            resultIntent.putExtra("Response", "Here is my response");
+                            setResult(Activity.RESULT_OK, resultIntent);
+                            finish();
+                        })
+                        .setNegativeButton(R.string.cancel, (dialog, id) -> {
+                            dialog.dismiss();
+                        })
+                        .show();
+
+            }
+        }));
     }
 
     private void print(String text){

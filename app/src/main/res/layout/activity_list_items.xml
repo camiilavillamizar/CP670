@@ -7,7 +7,8 @@
     tools:context=".ListItemsActivity"
     android:rowCount="2"
     android:columnCount="2"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:layout_margin="16dp">
 
     <RadioButton
         android:layout_columnWeight="1"
@@ -16,6 +17,7 @@
         tools:ignore="VisualLintButtonSize" />
 
     <CheckBox
+        android:id="@+id/checkbox"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
         android:text="@string/check_box"

@@ -16,4 +16,8 @@
     <string name="camera_not_found">Aplicación de cámara no encontrada</string>
     <string name="switch_on">El interruptor esta encendido</string>
     <string name="switch_off">El interruptor esta apagado</string>
+    <string name="dialog_title">Terminar actividad</string>
+    <string name="dialog_message">¿Esta seguro de terminar esta actividad?</string>
+    <string name="ok">Si</string>
+    <string name="cancel">No</string>
 </resources>
