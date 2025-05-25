@@ -14,4 +14,6 @@
     <string name="invalid_email">Correo inválido</string>
     <string name="empty_password">La Contraseña no puede ser vacía</string>
     <string name="camera_not_found">Aplicación de camara no encontrada</string>
+    <string name="switch_on">El interruptor esta encendido</string>
+    <string name="switch_off">El interruptor esta apagado</string>
 </resources>

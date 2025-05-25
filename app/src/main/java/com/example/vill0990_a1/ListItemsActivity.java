@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 
@@ -23,6 +24,7 @@ public class ListItemsActivity extends AppCompatActivity {
     final String TAG = "ListItemsActivity";
 
     ImageButton cameraButton;
+    Switch switchAction;
 
     private ActivityResultLauncher<Intent> openCamaraLauncher;
 
@@ -38,10 +40,20 @@ public class ListItemsActivity extends AppCompatActivity {
             return insets;
         });
 
+        //declaring elements
         cameraButton = findViewById(R.id.camera_button);
+        switchAction = findViewById(R.id.switch_action);
+
+        //To access to the camera for the first time we need to ask for permissions
         checkCameraPermission();
+        /*An activityResultLauncher is needed because we are changing the view for the camera
+        * and then we go back to the list items view with a 'result'*/
         initializingCameraLauncher();
+
+        //setting listeners
         settingButtonListener();
+        settingSwitchListener();
+
 
     }
     protected void onResume(){
@@ -93,6 +105,17 @@ public class ListItemsActivity extends AppCompatActivity {
                 Toast.makeText(this, getString(R.string.camera_not_found), Toast.LENGTH_SHORT).show();
                 Log.e(TAG, "No camera app found");
             }
+        });
+    }
+
+    private void settingSwitchListener(){
+        switchAction.setOnCheckedChangeListener((buttonView, isChecked) ->{
+            Toast toast;
+
+            if(isChecked) toast = Toast.makeText(this, getText(R.string.switch_on), Toast.LENGTH_SHORT);
+            else toast = Toast.makeText(this, getText(R.string.switch_off), Toast.LENGTH_LONG);
+
+            toast.show();
         });
     }
 }

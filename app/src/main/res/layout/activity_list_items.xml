@@ -21,7 +21,8 @@
         android:text="@string/check_box"
         tools:ignore="VisualLintButtonSize" />
 
-    <androidx.appcompat.widget.SwitchCompat
+    <Switch
+        android:id="@+id/switch_action"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
         android:text="@string/switch_text"
