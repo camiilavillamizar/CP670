@@ -118,4 +118,9 @@ public class ListItemsActivity extends AppCompatActivity {
             toast.show();
         });
     }
+
+    private void print(String text){
+        Toast toast = Toast.makeText(this, text, Toast.LENGTH_LONG);
+        toast.show();
+    }
 }
