@@ -1,9 +1,18 @@
 package com.example.vill0990_a1;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -12,6 +21,10 @@ import androidx.core.view.WindowInsetsCompat;
 public class ListItemsActivity extends AppCompatActivity {
 
     final String TAG = "ListItemsActivity";
+
+    ImageButton cameraButton;
+
+    private ActivityResultLauncher<Intent> openCamaraLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +37,12 @@ public class ListItemsActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        cameraButton = findViewById(R.id.camera_button);
+        checkCameraPermission();
+        initializingCameraLauncher();
+        settingButtonListener();
+
     }
     protected void onResume(){
         super.onResume();
@@ -44,5 +63,36 @@ public class ListItemsActivity extends AppCompatActivity {
     protected void onDestroy(){
         super.onDestroy();
         Log.i(TAG, "Inside onDestroy");
+    }
+
+    private void checkCameraPermission() {
+        if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
+        }
+    }
+
+    private void initializingCameraLauncher(){
+        openCamaraLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if(result.getResultCode() == RESULT_OK){
+                        Log.i(TAG, "Camera returned to ListItemsActivity");
+                    }
+                }
+        );
+    }
+
+    private void settingButtonListener(){
+        cameraButton.setOnClickListener(v ->{
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+            //verifying available camera
+            if(takePictureIntent.resolveActivity(getPackageManager()) != null){
+                openCamaraLauncher.launch(takePictureIntent);
+            } else {
+                Toast.makeText(this, getString(R.string.camera_not_found), Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "No camera app found");
+            }
+        });
     }
 }

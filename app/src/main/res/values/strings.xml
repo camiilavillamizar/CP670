@@ -12,4 +12,5 @@
 
     <string name="invalid_email">Invalid email</string>
     <string name="empty_password">Password cannot be empty</string>
+    <string name="camera_not_found">No camera app found</string>
 </resources>

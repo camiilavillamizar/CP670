@@ -28,6 +28,7 @@
         tools:ignore="VisualLintButtonSize" />
 
     <ImageButton
+        android:id="@+id/camera_button"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
         android:contentDescription="@string/hello_message"
