@@ -1,7 +1,10 @@
 package com.example.vill0990_a1;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     Button loginButton;
 
     EditText emailInput;
+    EditText passwordInput;
 
     SharedPreferences preferences;
     final String TAG = "LoginActivity";
@@ -36,13 +40,22 @@ public class LoginActivity extends AppCompatActivity {
         //Inizialiting preferences
         preferences = getSharedPreferences("LoginEmail", MODE_PRIVATE);
 
-        //Referencing the login button
+        //Referencing elements
         loginButton = findViewById(R.id.login_button);
-
-        //Reading the velue of the stored email address in SharedPreferences and assign it to emailInput
         emailInput = findViewById(R.id.email_input);
-        String storedEmail = preferences.getString("email", "email@domain.com"); //DefaultValue
-        emailInput.setText(storedEmail);
+        passwordInput = findViewById(R.id.password_input);
+
+        //Assigning Shared preferences 'LoginEmail' value to email input
+        assigningEmailAcordingToSharedPreferences();
+
+        /*-----HANDLING INVALID EMAILS AND NULL PASSWORDS-----*/
+
+        //Disabling the button if they are not valid
+        loginButton.setEnabled(false);
+
+        //Activating listeners to check each time user is typing
+        activatingEmailListener();
+        activatingPasswordListener();
 
 
     }
@@ -67,7 +80,29 @@ public class LoginActivity extends AppCompatActivity {
         Log.i(TAG, "Inside onDestroy");
     }
 
+    private void assigningEmailAcordingToSharedPreferences(){
+        //Reading the velue of the stored email address in SharedPreferences and assign it to emailInput
+        String storedEmail = preferences.getString("email", "email@domain.com"); //DefaultValue
+        emailInput.setText(storedEmail);
+    }
     public void onLogin(android.view.View view){
+
+        //Saving email in SharedPreferences
+        savingEmailInSharedPreferences();
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private boolean validEmail(String email){
+        return !email.isEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    private boolean validPassword(String password){
+        return !password.isEmpty();
+    }
+
+    private void savingEmailInSharedPreferences(){
         String email = emailInput.getText().toString();
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("email", email);
@@ -75,4 +110,59 @@ public class LoginActivity extends AppCompatActivity {
 
         Log.i(TAG, "email saved " + email);
     }
+
+
+    private void validateInputs(){
+        String email = emailInput.getText().toString().trim();
+        String password = passwordInput.getText().toString().trim();
+
+        boolean isValidEmail = validEmail(email);
+        boolean isValidPassword = validPassword(password);
+
+        loginButton.setEnabled(isValidPassword && isValidEmail);
+    }
+
+    //Listeners of email and password
+    private void activatingEmailListener(){
+        emailInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String email = s.toString().trim();
+                if (!validEmail(email)) {
+                    emailInput.setError("Invalid email");
+                } else {
+                    emailInput.setError(null);
+                }
+                validateInputs();
+            }
+        });
+    }
+
+    private void activatingPasswordListener(){
+        passwordInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String password = s.toString().trim();
+                if (!validPassword(password)) {
+                    passwordInput.setError("Password cannot be empty");
+                } else {
+                    passwordInput.setError(null);
+                }
+                validateInputs();
+            }
+        });
+    }
+
 }
