@@ -9,4 +9,7 @@
     <string name="radio_button">RadioButton</string>
     <string name="check_box">CheckBox</string>
     <string name="switch_text">What does this do?</string>
+
+    <string name="invalid_email">Invalid email</string>
+    <string name="empty_password">Password cannot be empty</string>
 </resources>

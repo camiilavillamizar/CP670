@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
     SharedPreferences preferences;
     final String TAG = "LoginActivity";
+    final String EMAIL = "EMAIL";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
     private void savingEmailInSharedPreferences(){
         String email = emailInput.getText().toString();
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("email", email);
+        editor.putString(EMAIL, email);
         editor.apply();
 
         Log.i(TAG, "email saved " + email);
@@ -135,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 String email = s.toString().trim();
                 if (!validEmail(email)) {
-                    emailInput.setError("Invalid email");
+                    emailInput.setError(getString(R.string.invalid_email));
                 } else {
                     emailInput.setError(null);
                 }
@@ -156,7 +157,7 @@ public class LoginActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 String password = s.toString().trim();
                 if (!validPassword(password)) {
-                    passwordInput.setError("Password cannot be empty");
+                    passwordInput.setError(getString(R.string.empty_password));
                 } else {
                     passwordInput.setError(null);
                 }

@@ -10,4 +10,7 @@
     <string name="radio_button">Botón de opción</string>
     <string name="check_box">Casilla de verificación</string>
     <string name="switch_text">Que hace esto?</string>
+
+    <string name="invalid_email">Correo inválido</string>
+    <string name="empty_password">La Contraseña no puede ser vacía</string>
 </resources>
