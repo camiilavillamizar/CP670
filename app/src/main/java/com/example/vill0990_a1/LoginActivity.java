@@ -25,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     SharedPreferences preferences;
     final String TAG = "LoginActivity";
     final String EMAIL = "email";
+    final String LOGIN_EMAIL = "LoginEmail";
+    final String DEFAULT_EMAIL = "email@domain.com";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         //Inizialiting preferences
-        preferences = getSharedPreferences("LoginEmail", MODE_PRIVATE);
+        preferences = getSharedPreferences(LOGIN_EMAIL, MODE_PRIVATE);
 
         //Referencing elements
         loginButton = findViewById(R.id.login_button);
@@ -83,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void assigningEmailAcordingToSharedPreferences(){
         //Reading the velue of the stored email address in SharedPreferences and assign it to emailInput
-        String storedEmail = preferences.getString("email", "email@domain.com"); //DefaultValue
+        String storedEmail = preferences.getString(EMAIL, DEFAULT_EMAIL); //DefaultValue
         emailInput.setText(storedEmail);
     }
     public void onLogin(android.view.View view){
