@@ -27,6 +27,8 @@ public class ListItemsActivity extends AppCompatActivity {
 
     final String TAG = "ListItemsActivity";
 
+    final String RESPONSE = "Response";
+
     ImageButton cameraButton;
     SwitchCompat switchAction;
     CheckBox checkBox;
@@ -148,7 +150,7 @@ public class ListItemsActivity extends AppCompatActivity {
                         .setTitle(R.string.dialog_title)
                         .setPositiveButton(R.string.ok, (dialog, id) -> {
                             Intent resultIntent = new Intent();
-                            resultIntent.putExtra("Response", "Here is my response");
+                            resultIntent.putExtra(RESPONSE, getString(R.string.my_response));
                             setResult(Activity.RESULT_OK, resultIntent);
                             finish();
                         })

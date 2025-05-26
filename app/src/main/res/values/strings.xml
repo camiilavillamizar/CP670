@@ -20,5 +20,5 @@
     <string name="ok">Yes</string>
     <string name="cancel">No</string>
     <string name="listItems_passed">ListItemsActivity passed: &#160;</string>
-
+    <string name="my_response">This is my response</string>
 </resources>
