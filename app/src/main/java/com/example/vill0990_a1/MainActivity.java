@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button button;
     final String TAG = "MainActivity";
+    final String RESPONSE = "Response";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,10 +73,13 @@ public class MainActivity extends AppCompatActivity {
                     if (result.getResultCode() == RESULT_OK){
                         Log.i(TAG, "Returned to MainActivity.onActivityResult");
 
-                        String messagePassed = result.getData().getStringExtra("Response");
-                        Toast toast = Toast.makeText(this, "ListItemsActivity passed: "
-                                + messagePassed, Toast.LENGTH_LONG);
-                        toast.show();
+                        Intent data = result.getData();
+
+                        if (data != null) {
+                            String messagePassed = data.getStringExtra(RESPONSE);
+                            Toast toast = Toast.makeText(this, getString(R.string.listItems_passed) + messagePassed, Toast.LENGTH_LONG);
+                            toast.show();
+                        }
                     }
                 }
         );

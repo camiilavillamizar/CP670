@@ -20,4 +20,5 @@
     <string name="dialog_message">¿Esta seguro de terminar esta actividad?</string>
     <string name="ok">Si</string>
     <string name="cancel">No</string>
+    <string name="listItems_passed">ListItemsActivity pasó: &#160; </string>
 </resources>
