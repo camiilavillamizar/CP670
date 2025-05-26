@@ -11,7 +11,6 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
-import android.widget.Switch;
 import android.widget.Toast;
 
 
@@ -19,6 +18,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -28,7 +28,7 @@ public class ListItemsActivity extends AppCompatActivity {
     final String TAG = "ListItemsActivity";
 
     ImageButton cameraButton;
-    Switch switchAction;
+    SwitchCompat switchAction;
     CheckBox checkBox;
 
     private ActivityResultLauncher<Intent> openCamaraLauncher;
@@ -132,12 +132,10 @@ public class ListItemsActivity extends AppCompatActivity {
 
     private void settingSwitchListener(){
         switchAction.setOnCheckedChangeListener((buttonView, isChecked) ->{
-            Toast toast;
 
-            if(isChecked) toast = Toast.makeText(this, getText(R.string.switch_on), Toast.LENGTH_SHORT);
-            else toast = Toast.makeText(this, getText(R.string.switch_off), Toast.LENGTH_LONG);
+            if(isChecked) print(getString(R.string.switch_on), Toast.LENGTH_SHORT);
+            else print(getString(R.string.switch_off), Toast.LENGTH_LONG);
 
-            toast.show();
         });
     }
 
@@ -154,17 +152,15 @@ public class ListItemsActivity extends AppCompatActivity {
                             setResult(Activity.RESULT_OK, resultIntent);
                             finish();
                         })
-                        .setNegativeButton(R.string.cancel, (dialog, id) -> {
-                            dialog.dismiss();
-                        })
+                        .setNegativeButton(R.string.cancel, (dialog, id) -> dialog.dismiss())
                         .show();
 
             }
         }));
     }
 
-    private void print(String text){
-        Toast toast = Toast.makeText(this, text, Toast.LENGTH_LONG);
+    private void print(String text, int duration){
+        Toast toast = Toast.makeText(this, text, duration);
         toast.show();
     }
 }
