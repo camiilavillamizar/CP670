@@ -22,4 +22,7 @@
     <string name="cancel">No</string>
     <string name="listItems_passed">ListItemsActivity pasó: &#160; </string>
     <string name="my_response">Esta es mi respuesta</string>
+
+    <string name="start_chat">Iniciar Chat</string>
+    <string name="send">Enviar</string>
 </resources>

@@ -14,9 +14,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.button.MaterialButton;
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityResultLauncher<Intent> activityResultLauncher;
+
+    MaterialButton startChatButton;
 
     Button button;
     final String TAG = "MainActivity";
@@ -35,12 +39,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         button = findViewById(R.id.button);
+        startChatButton = findViewById(R.id.startChatButton);
 
         //As startActivityForResult is deprecated, now we use ActivityResultLauncher
         settingUpActivityResultLauncher();
 
         //Button listener
         settingButtonListener();
+
+        //New ChatView
+        settingButtonStartChatListener();
 
     }
 
@@ -87,6 +95,15 @@ public class MainActivity extends AppCompatActivity {
     private void settingButtonListener(){
         button.setOnClickListener(v -> {
             Intent intent = new Intent(this, ListItemsActivity.class);
+            activityResultLauncher.launch(intent);
+        });
+    }
+
+    private void settingButtonStartChatListener(){
+        startChatButton.setOnClickListener(v -> {
+            Log.i(TAG, "User clicked Start Chat");
+
+            Intent intent = new Intent(this, ChatWindow.class);
             activityResultLauncher.launch(intent);
         });
     }

@@ -21,4 +21,7 @@
     <string name="cancel">No</string>
     <string name="listItems_passed">ListItemsActivity passed: &#160;</string>
     <string name="my_response">This is my response</string>
+
+    <string name="start_chat">Start Chat</string>
+    <string name="send">Send</string>
 </resources>

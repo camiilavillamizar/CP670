@@ -33,6 +33,7 @@ public class ListItemsActivity extends AppCompatActivity {
     SwitchCompat switchAction;
     CheckBox checkBox;
 
+    //Used when we are waiting for a result of other page
     private ActivityResultLauncher<Intent> openCamaraLauncher;
 
     @Override
@@ -46,6 +47,7 @@ public class ListItemsActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
 
         //declaring elements
         cameraButton = findViewById(R.id.camera_button);

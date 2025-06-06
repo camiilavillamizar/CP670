@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="209dp"
@@ -48,5 +49,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="50dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/startChatButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_chat"
+        app:icon="@drawable/sym_call_outgoing"
+        app:iconGravity="textEnd"
+        app:iconPadding="8dp"
+        android:backgroundTint="#4CAF50"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
