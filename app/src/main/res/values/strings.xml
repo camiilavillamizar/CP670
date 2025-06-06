@@ -24,4 +24,5 @@
 
     <string name="start_chat">Start Chat</string>
     <string name="send">Send</string>
+    <string name="type_message">Type your message...</string>
 </resources>

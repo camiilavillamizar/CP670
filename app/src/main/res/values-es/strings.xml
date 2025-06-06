@@ -25,4 +25,5 @@
 
     <string name="start_chat">Iniciar Chat</string>
     <string name="send">Enviar</string>
+    <string name="type_message">Escribe tu mensaje...</string>
 </resources>
