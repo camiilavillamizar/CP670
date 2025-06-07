@@ -13,18 +13,18 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_above="@id/send_button"></ListView>
+        android:layout_above="@id/edit_text" />
 
     <EditText
         android:id="@+id/edit_text"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/send_button"
+        android:layout_toStartOf="@id/send_button"
+        android:layout_alignParentStart="true"
         android:inputType="text"
         android:hint="@string/type_message"
-        />
+        android:autofillHints="username" />
 
     <Button
         android:id="@+id/send_button"
@@ -32,8 +32,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:text="@string/send"
-        />
-
-
+        android:text="@string/send" />
 </RelativeLayout>

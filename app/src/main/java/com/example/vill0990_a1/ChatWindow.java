@@ -2,6 +2,7 @@ package com.example.vill0990_a1;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -32,6 +34,8 @@ public class ChatWindow extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        Log.i(TAG, "Inside onCreate");
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_chat_window);
@@ -47,6 +51,27 @@ public class ChatWindow extends AppCompatActivity {
         //Creating the adapter for listView
         messageAdapter = new ChatAdapter(this);
         listView.setAdapter(messageAdapter);
+    }
+
+    protected void onResume(){
+        super.onResume();
+        Log.i(TAG, "Inside onResume");
+    }
+    protected void onStart(){
+        super.onStart();
+        Log.i(TAG, "Inside onStart");
+    }
+    protected void onPause(){
+        super.onPause();
+        Log.i(TAG, "Inside onPause");
+    }
+    protected void onStop(){
+        super.onStop();
+        Log.i(TAG, "Inside onStop");
+    }
+    protected void onDestroy(){
+        super.onDestroy();
+        Log.i(TAG, "Inside onDestroy");
     }
 
     private void initializeElements(){
@@ -80,6 +105,7 @@ public class ChatWindow extends AppCompatActivity {
             return messages.get(position);
         }
 
+        @NonNull
         public View getView(int position, View convertView, ViewGroup parent){
 
             //Inflater is to convert xml in layout to View objects in exec time
