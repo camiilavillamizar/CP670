@@ -1,0 +1,68 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+' === PACKAGES ===
+package "com.example.vill0990_a1.adapters" {
+    class ChatAdapter {
+        - List<String> messages
+        + ChatAdapter(Context, List<String>)
+        + int getCount()
+        + String getItem(int)
+        + View getView(int, View, ViewGroup)
+    }
+}
+
+package "com.example.vill0990_a1.functions" {
+    class LoginValidator {
+        + static boolean validEmail(String)
+        + static boolean validPassword(String)
+    }
+}
+
+package "com.example.vill0990_a1" {
+    class ChatWindow {
+        - Button sendButton
+        - EditText textInput
+        - ListView listView
+        - ArrayList<String> messages
+        - ChatAdapter messageAdapter
+        + void onCreate(Bundle)
+    }
+
+    class ListItemsActivity {
+        - ImageButton cameraButton
+        - SwitchCompat switchAction
+        - CheckBox checkBox
+        - ActivityResultLauncher<Intent> openCamaraLauncher
+        + void onCreate(Bundle)
+        + void checkCameraPermission()
+        + void handleCameraResult(int, Intent)
+    }
+
+    class LoginActivity {
+        - Button loginButton
+        - EditText emailInput
+        - EditText passwordInput
+        - SharedPreferences preferences
+        + void onCreate(Bundle)
+        + void onLogin(View)
+    }
+
+    class MainActivity {
+        - MaterialButton startChatButton
+        - Button button
+        - ActivityResultLauncher<Intent> activityResultLauncher
+        + void onCreate(Bundle)
+        + void handleActivityResult(int, Intent)
+    }
+}
+
+' === RELATIONSHIPS ===
+LoginActivity --> MainActivity
+LoginActivity --> LoginValidator
+MainActivity --> ChatWindow
+MainActivity --> ListItemsActivity
+ChatWindow --> ChatAdapter
+
+@enduml
