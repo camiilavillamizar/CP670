@@ -1,5 +1,8 @@
 package com.example.vill0990_a1;
 
+import static com.example.vill0990_a1.functions.LoginValidator.validEmail;
+import static com.example.vill0990_a1.functions.LoginValidator.validPassword;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -95,14 +99,6 @@ public class LoginActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
-
-    private boolean validEmail(String email){
-        return !email.isEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
-
-    private boolean validPassword(String password){
-        return !password.isEmpty();
     }
 
     private void savingEmailInSharedPreferences(){

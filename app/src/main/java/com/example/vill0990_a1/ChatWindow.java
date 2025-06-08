@@ -1,23 +1,18 @@
 package com.example.vill0990_a1;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.vill0990_a1.adapters.ChatAdapter;
 
 import java.util.ArrayList;
 
@@ -49,7 +44,7 @@ public class ChatWindow extends AppCompatActivity {
         settingSendButtonListener();
 
         //Creating the adapter for listView
-        messageAdapter = new ChatAdapter(this);
+        messageAdapter = new ChatAdapter(this, messages);
         listView.setAdapter(messageAdapter);
     }
 
@@ -92,35 +87,4 @@ public class ChatWindow extends AppCompatActivity {
         });
     }
 
-    public class ChatAdapter extends ArrayAdapter<String> {
-        public ChatAdapter(Context ctx) {
-            super(ctx, 0);
-        }
-
-        public int getCount(){
-            return messages.size();
-        }
-
-        public String getItem(int position){
-            return messages.get(position);
-        }
-
-        @NonNull
-        public View getView(int position, View convertView, ViewGroup parent){
-
-            //Inflater is to convert xml in layout to View objects in exec time
-            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            View result;
-
-            if (position % 2 == 0){
-                result = inflater.inflate(R.layout.chat_row_incoming, parent, false);
-            } else {
-                result = inflater.inflate(R.layout.chat_row_outgoing, parent, false);
-            }
-
-            TextView message = result.findViewById(R.id.messageText);
-            message.setText(getItem(position));
-            return result;
-        }
-    }
 }
