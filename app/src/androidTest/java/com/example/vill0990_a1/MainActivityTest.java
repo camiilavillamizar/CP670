@@ -5,6 +5,9 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
+import android.app.Activity;
+import android.content.Intent;
+
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.espresso.intent.matcher.IntentMatchers;
@@ -53,4 +56,52 @@ public class MainActivityTest {
         //Verifying that an intent to ListItemsActivity was launched
         Intents.intended(IntentMatchers.hasComponent(ListItemsActivity.class.getName()));
     }
+    @Test
+    public void testActivityResultLauncher_receivesResultAndShowsToast() {
+        ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class);
+
+        scenario.onActivity(activity -> {
+            // Simulate result from launched activity
+            Intent resultData = new Intent();
+            resultData.putExtra("Response", "Hello!"); // Simulate the response string
+
+            // Simulate RESULT_OK returned
+            activity.activityResultLauncher.getContract()
+                    .parseResult(Activity.RESULT_OK, resultData);
+        });
+
+    }
+
+    @Test
+    public void testHandleActivityResult_resultOk_withData() {
+        ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class);
+
+        scenario.onActivity(activity -> {
+            Intent data = new Intent();
+            data.putExtra("Response", "Hola");
+
+            activity.handleActivityResult(Activity.RESULT_OK, data);
+        });
+    }
+
+    @Test
+    public void testHandleActivityResult_resultOk_noData() {
+        ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class);
+
+        scenario.onActivity(activity -> {
+            activity.handleActivityResult(Activity.RESULT_OK, null);
+        });
+    }
+
+    @Test
+    public void testHandleActivityResult_resultCanceled_doesNothing() {
+        ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class);
+
+        scenario.onActivity(activity -> {
+            Intent data = new Intent();
+            data.putExtra("Response", "Ignored");
+            activity.handleActivityResult(Activity.RESULT_CANCELED, data);
+        });
+    }
+
 }

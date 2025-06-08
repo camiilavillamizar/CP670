@@ -18,7 +18,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityResultLauncher<Intent> activityResultLauncher;
+    ActivityResultLauncher<Intent> activityResultLauncher;
 
     MaterialButton startChatButton;
 
@@ -77,19 +77,8 @@ public class MainActivity extends AppCompatActivity {
     private void settingUpActivityResultLauncher(){
         activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == RESULT_OK){
-                        Log.i(TAG, "Returned to MainActivity.onActivityResult");
+                result -> handleActivityResult(result.getResultCode(), result.getData())
 
-                        Intent data = result.getData();
-
-                        if (data != null) {
-                            String messagePassed = data.getStringExtra(RESPONSE);
-                            Toast toast = Toast.makeText(this, getString(R.string.listItems_passed) + messagePassed, Toast.LENGTH_LONG);
-                            toast.show();
-                        }
-                    }
-                }
         );
     }
     private void settingButtonListener(){
@@ -107,4 +96,17 @@ public class MainActivity extends AppCompatActivity {
             activityResultLauncher.launch(intent);
         });
     }
+
+    public void handleActivityResult(int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            Log.i(TAG, "Returned to MainActivity.onActivityResult");
+
+            if (data != null) {
+                String messagePassed = data.getStringExtra(RESPONSE);
+                Toast toast = Toast.makeText(this, getString(R.string.listItems_passed) + messagePassed, Toast.LENGTH_LONG);
+                toast.show();
+            }
+        }
+    }
+
 }

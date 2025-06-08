@@ -2,6 +2,7 @@ package com.example.vill0990_a1;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.clearText;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.typeText;
@@ -63,6 +64,7 @@ public class LoginActivityTest {
         ActivityScenario.launch(LoginActivity.class);
 
         //Type invalid email
+        onView(withId(R.id.email_input)).perform(replaceText(""));
         onView(withId(R.id.email_input)).perform(typeText("invalid-email"), closeSoftKeyboard());
 
         //Type valid password
@@ -78,6 +80,7 @@ public class LoginActivityTest {
         ActivityScenario.launch(LoginActivity.class);
 
         //Type valid email
+        onView(withId(R.id.email_input)).perform(replaceText(""));
         onView(withId(R.id.email_input)).perform(typeText("user@example.com"), closeSoftKeyboard());
 
         //Type empty password
@@ -86,4 +89,27 @@ public class LoginActivityTest {
         //Button should remain disabled
         onView(withId(R.id.login_button)).check(matches(not(isEnabled())));
     }
+
+    @Test
+    public void testLoginButton_click_savesEmailAndOpensMainActivity() {
+        ActivityScenario<LoginActivity> scenario = ActivityScenario.launch(LoginActivity.class);
+
+        onView(withId(R.id.email_input)).perform(replaceText(""));
+        onView(withId(R.id.email_input)).perform(replaceText("user@example.com"), closeSoftKeyboard());
+        onView(withId(R.id.password_input)).perform(replaceText("validpassword"), closeSoftKeyboard());
+
+        // Button is now enabled
+        onView(withId(R.id.login_button)).check(matches(isEnabled()));
+
+        // Click the login button → triggers onLogin()
+        onView(withId(R.id.login_button)).perform(click());
+
+
+        //Verify the email is stored
+        Context context = ApplicationProvider.getApplicationContext();
+        SharedPreferences preferences = context.getSharedPreferences("LoginEmail", Context.MODE_PRIVATE);
+        String storedEmail = preferences.getString("email", "");
+        assert(storedEmail.equals("user@example.com"));
+    }
+
 }

@@ -34,7 +34,7 @@ public class ListItemsActivity extends AppCompatActivity {
     CheckBox checkBox;
 
     //Used when we are waiting for a result of other page
-    private ActivityResultLauncher<Intent> openCamaraLauncher;
+    ActivityResultLauncher<Intent> openCamaraLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +90,7 @@ public class ListItemsActivity extends AppCompatActivity {
         Log.i(TAG, "Inside onDestroy");
     }
 
-    private void checkCameraPermission() {
+    void checkCameraPermission() {
         if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
         }
@@ -99,24 +99,7 @@ public class ListItemsActivity extends AppCompatActivity {
     private void initializingCameraLauncher(){
         openCamaraLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if(result.getResultCode() == RESULT_OK && result.getData() != null){
-                        Log.i(TAG, "Camera returned to ListItemsActivity");
-
-                        Bundle extras = result.getData().getExtras();
-                        if (extras != null) {
-                            Bitmap imageBitmap = (Bitmap) extras.get("data");
-                            if(imageBitmap != null){
-                                cameraButton.setImageBitmap(imageBitmap);
-                            }
-                        } else {
-                            Toast.makeText(this, "No image captured", Toast.LENGTH_SHORT).show();
-
-                        }
-
-
-                    }
-                }
+                result -> handleCameraResult(result.getResultCode(), result.getData())
         );
     }
 
@@ -167,4 +150,18 @@ public class ListItemsActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(this, text, duration);
         toast.show();
     }
+    public void handleCameraResult(int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && data != null) {
+            Bundle extras = data.getExtras();
+            if (extras != null) {
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                if (imageBitmap != null) {
+                    cameraButton.setImageBitmap(imageBitmap);
+                }
+            } else {
+                Toast.makeText(this, "No image captured", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 }
