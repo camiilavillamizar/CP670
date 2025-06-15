@@ -76,5 +76,15 @@
     <string name="menu_item_2">Choice 2</string>
     <string name="menu_item_3">Choice 3</string>
     <string name="about">Version 1.0 by Maria Camila Villamizar</string>
+    <string name="personalized_notification">This is my personalized notification</string>
+    <string name="selected_option">You selected option </string>
+    <string name="go_back_question">Do you want to go back?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="toolbar_title">My Toolbar</string>
+    <string name="dialog_message_toolbar">Select \"yes\" to go back</string>
+    <string name="custom_dialog_title">Enter a message</string>
+    <string name="message_successful_message_update">Message updated!</string>
+    <string name="musical_note">musical nore</string>
 
 </resources>

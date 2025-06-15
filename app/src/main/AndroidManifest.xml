@@ -26,7 +26,8 @@
         <activity
             android:name=".TestToolbar"
             android:exported="false"
-            android:theme="@style/Theme.Vill0990_a1" />
+            android:theme="@style/Theme.Vill0990_a1"
+            android:value=".MainActivity"/>
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
