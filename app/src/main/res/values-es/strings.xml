@@ -86,4 +86,5 @@
     <string name="custom_dialog_title">Digite mensaje</string>
     <string name="message_successful_message_update">Mensaje actualizado!</string>
     <string name="musical_note">nota musical</string>
+    <string name="new_message">Nuevo mensaje</string>
 </resources>

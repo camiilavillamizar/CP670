@@ -86,5 +86,6 @@
     <string name="custom_dialog_title">Enter a message</string>
     <string name="message_successful_message_update">Message updated!</string>
     <string name="musical_note">musical nore</string>
+    <string name="new_message">New Message</string>
 
 </resources>

@@ -16,16 +16,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.example.vill0990_a1.databinding.ActivityTestToolbarBinding;
 
 public class TestToolbar extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
     private ActivityTestToolbarBinding binding;
 
     private String latestMessage = "";
@@ -39,13 +35,6 @@ public class TestToolbar extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
         binding.toolbar.setTitle(getString(R.string.toolbar_title));
 
-        /*
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_test_toolbar);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        *
-         */
-
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,16 +46,6 @@ public class TestToolbar extends AppCompatActivity {
 
         settingUpFirstMessage();
     }
-
-    /*
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_test_toolbar);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
-    *
-     */
 
     /**
      * Inflate the menu; this adds items to the action bar if it is present.
@@ -148,10 +127,9 @@ public class TestToolbar extends AppCompatActivity {
                 .setView(dialogView)
                 .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        String newMessage = editMessage.getText().toString();
 
                         //saving the message in lastest message var
-                        latestMessage = newMessage;
+                        latestMessage = editMessage.getText().toString();
                         Snackbar.make(binding.getRoot(), getString(R.string.message_successful_message_update), Snackbar.LENGTH_SHORT).show();
                     }
                 })
