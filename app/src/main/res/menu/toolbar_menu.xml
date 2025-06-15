@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_1"
+        android:title="@string/menu_item_1"
+        android:icon="@drawable/heart"
+        android:orderInCategory="3"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/action_2"
+        android:title="@string/menu_item_2"
+        android:icon="@drawable/magic_wand"
+        android:orderInCategory="1"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/action_3"
+        android:title="@string/menu_item_3"
+        android:icon="@drawable/crown"
+        android:orderInCategory="2"
+        app:showAsAction="always" />
+</menu>

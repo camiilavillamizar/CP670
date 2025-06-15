@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     MaterialButton startChatButton;
 
     Button button;
+    Button testToolbarButton;
+
     final String TAG = "MainActivity";
     final String RESPONSE = "Response";
     @Override
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         button = findViewById(R.id.button);
         startChatButton = findViewById(R.id.startChatButton);
+        testToolbarButton = findViewById(R.id.testToolbarButton);
 
         //As startActivityForResult is deprecated, now we use ActivityResultLauncher
         settingUpActivityResultLauncher();
@@ -49,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
         //New ChatView
         settingButtonStartChatListener();
+
+        //Test Toolbar
+        settingUpTestToolbarListener();
 
     }
 
@@ -107,6 +113,14 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
             }
         }
+    }
+
+    public void settingUpTestToolbarListener(){
+        testToolbarButton.setOnClickListener(v -> {
+            Log.i(TAG, "User clicked Test Toolbar");
+            Intent intent = new Intent(this, TestToolbar.class);
+            startActivity(intent);
+        });
     }
 
 }
