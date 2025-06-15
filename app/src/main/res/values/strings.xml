@@ -75,4 +75,6 @@
     <string name="menu_item_1">Choice 1</string>
     <string name="menu_item_2">Choice 2</string>
     <string name="menu_item_3">Choice 3</string>
+    <string name="about">Version 1.0 by Maria Camila Villamizar</string>
+
 </resources>

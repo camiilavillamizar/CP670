@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -76,6 +77,13 @@ public class TestToolbar extends AppCompatActivity {
             return true;
         } else if (id == R.id.action_3) {
             Log.d("TestToolbar", "action_3 selected");
+            return true;
+        } else if (id == R.id.action_about) {
+            Log.d("TestToolbar", "action_about selected");
+
+            String message = getString(R.string.about);
+            Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
+            toast.show();
             return true;
         }
         return false;

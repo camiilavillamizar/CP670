@@ -19,4 +19,9 @@
         android:icon="@drawable/crown"
         android:orderInCategory="2"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_about"
+        android:title="About"
+        app:showAsAction="never" />
 </menu>
